@@ -1,10 +1,10 @@
-# Heroku Subdir buildpack
+# Heroku Subdir Buildpack
 
 Imagine you have a single code base, which has a few different applications within it... or at least the ability to run a few different applications. Or, maybe you're Google with your mono repo?
 
 In any case, how do you manage this on Heroku? You don't. Heroku applications assume one repo to one application. 
 
-Enter the Heroku Subdir buildpack, as an alternative of the [Multi Procfile buildpack](https://github.com/heroku/heroku-buildpack-multi-procfile)).
+Enter the Heroku Subdir Buildpack, as an alternative of the [Multi Procfile Buildpack](https://github.com/heroku/heroku-buildpack-multi-procfile)).
 
 # Usage
 

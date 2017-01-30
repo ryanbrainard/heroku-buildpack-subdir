@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 indent() {
     sed -u 's/^/      /'
 }
@@ -8,18 +10,16 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-BUILD_SUBDIR=$(cat ${ENV_DIR}/BUILD_SUBDIR)
+BUILD_SUBDIR=$(cat "${ENV_DIR}/BUILD_SUBDIR")
+BUILD_SUBDIR_TMP=$(mktemp -d)/build
 
 if [[ -z "${BUILD_SUBDIR}" ]]; then
     echo "BUILD_SUBDIR was not set. Aborting" | indent
     exit 1
 fi
 
-cd ${BUILD_DIR}/${BUILD_SUBDIR}
+mv "${BUILD_DIR}/${BUILD_SUBDIR}" "${BUILD_SUBDIR_TMP}"
+rm -r "${BUILD_DIR}"
+mv "${BUILD_SUBDIR_TMP}" "${BUILD_DIR}"
 
-if ! [ $? ]; then
-    echo "FAILED to change to ${BUILD_SUBDIR}" | indent
-    exit 1
-fi
-
-echo "Changed to ${BUILD_SUBDIR} as build dir successfully" | indent
+echo "Changed to build dir to ${BUILD_SUBDIR}" | indent
