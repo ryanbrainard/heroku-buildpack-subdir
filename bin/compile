@@ -8,18 +8,18 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-PROCFILE=$(cat ${ENV_DIR}/PROCFILE)
+BUILD_SUBDIR=$(cat ${ENV_DIR}/BUILD_SUBDIR)
 
-if [[ -z "${PROCFILE}" ]]; then
-    echo "PROCFILE was not set. Aborting" | indent
+if [[ -z "${BUILD_SUBDIR}" ]]; then
+    echo "BUILD_SUBDIR was not set. Aborting" | indent
     exit 1
 fi
 
-cp ${BUILD_DIR}/${PROCFILE} ${BUILD_DIR}/Procfile
+cd ${BUILD_DIR}/${BUILD_SUBDIR}
 
 if ! [ $? ]; then
-    echo "FAILED to copy a Procfile" | indent
+    echo "FAILED to change to ${BUILD_SUBDIR}" | indent
     exit 1
 fi
 
-echo "Copied ${PROCFILE} as Procfile successfully" | indent
+echo "Changed to ${BUILD_SUBDIR} as build dir successfully" | indent

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo "Multi-procfile"
+echo "Subdir"
 exit 0
